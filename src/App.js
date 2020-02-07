@@ -1,16 +1,31 @@
 import React from 'react';
 import './App.css';
 import {Router, Route} from "react-router-dom";
-import {Navbar} from 'react-bootstrap/Navbar';
+import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
+import {createBrowserHistory} from 'history'
+const history = createBrowserHistory();
 
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Router history={history}>
+        <Navbar bg="primary" expand="lg" variant="dark" >
+          <Navbar.Brand href="/">Flickr Image App</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/imagesearch">Image Search</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
 
+
+        {/* <Route path="/" exact component={HomePage} />
+        <Route path="/imagesearch" exact component={ImageSearchPage} />
+        <Route path="/videosearch" exact component={VideoSearchPage} /> */}
       </Router>
-
     </div>
   );
 }
