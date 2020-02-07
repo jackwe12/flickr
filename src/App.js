@@ -4,6 +4,8 @@ import {Router, Route} from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
 import {createBrowserHistory} from 'history'
+import HomePage from './components/HomePage/HomePage';
+
 const history = createBrowserHistory();
 
 function App() {
@@ -20,11 +22,10 @@ function App() {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        <Route path="/" exact component={HomePage} />
 
 
-        {/* <Route path="/" exact component={HomePage} />
-        <Route path="/imagesearch" exact component={ImageSearchPage} />
-        <Route path="/videosearch" exact component={VideoSearchPage} /> */}
+  
       </Router>
     </div>
   );
