@@ -4,7 +4,7 @@ import {Router, Route} from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
 import {createBrowserHistory} from 'history'
-import HomePage from './components/HomePage/HomePage';
+// import HomePage from './components/HomePage/HomePage';
 import imageSearch from './components/ImageSearch/ImageSearch';
 
 const history = createBrowserHistory();

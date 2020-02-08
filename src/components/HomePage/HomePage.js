@@ -1,5 +1,5 @@
 import React from 'react';
-import './HomePage.css';
+// import './HomePage.css';
 import { useState, useEffect } from 'react';
 import {getPhotos} from '../getPhotos'
 import Figure from 'react-bootstrap/Figure';
