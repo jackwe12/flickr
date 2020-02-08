@@ -10,10 +10,11 @@ import { searchPhotos } from '../getPhotos';
 import InfiniteScroll from 'react-infinite-scroller';
 import {CardColumns, Spinner} from 'react-bootstrap';
 import ImageCard from '../Card/Card'
-
+//revise
 const schema = yup.object({
     query: yup.string().required('Keyword is required'),
   });
+
 
 
 function ImageSearch(){
