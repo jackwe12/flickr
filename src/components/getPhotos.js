@@ -10,8 +10,8 @@ export const getPhotos = () =>{
     return axios.get(`${APIURL}?key=${APIKEY}&format=json&nojsoncallback=true`)
 };
 
-export const searchPhotos = data => {
-    return axios.get(`${APIURL}?key=${APIKEY}`);
+export const searchPhotos = (keyword) => {
+    return axios.get(`${APIURL}?key=${APIKEY}&format=json&nojsoncallback=true&tags=${keyword}&lan=en`);
 };
 
 

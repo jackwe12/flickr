@@ -1,0 +1,17 @@
+.card-img-top:hover {
+    cursor: pointer;
+}
+.modal-dialog{
+    max-width: 50vw;
+}
+
+.card {
+    transition: box-shadow .3s;
+    border-radius:10px;
+    border: 1px solid #ccc;
+    
+  }
+.card:hover {
+    box-shadow: 0 0 50px rgba(33,33,33,.5); 
+    transform: translate3D(3px,3px,0);
+  }
