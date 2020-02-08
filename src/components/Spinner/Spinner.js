@@ -1,7 +1,15 @@
 import React from 'react';
 import './Spinner.css';
-const Loader = () => (
-    <div className="spinner">Loading...</div>
-);
 
-export default Loader;
+
+function Spinner() {
+    console.log('loader is working ')
+  return (
+    <div className="tasks-loader center">
+    <div className="tasks-spinner"></div>
+    </div>
+  );
+}
+
+
+export default Spinner;

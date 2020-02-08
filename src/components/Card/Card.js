@@ -1,6 +1,6 @@
 import Figure from 'react-bootstrap/Figure';
 import React from 'react';
-import { useState, useEffect} from 'react';
+import { useState} from 'react';
 import {Card, ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
 import './Card.css';
 

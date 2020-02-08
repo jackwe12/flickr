@@ -5,8 +5,38 @@
 .ImageSearch{
     background-color: #f3f5f6;
 }
+.search-bar{
+    margin-left:3rem;
+}
+.form-group{
+    margin-top: 1.5rem;
+}
 
 
 
 
-
+@media (min-width:300px){
+    .card-columns{
+        column-count:1
+    }
+}
+@media (min-width:800px){
+    .card-columns{
+        column-count:2
+    }
+}
+@media (min-width:1000px){
+    .card-columns{
+        column-count:3
+    }
+}
+@media (min-width:1200px){
+    .card-columns{
+        column-count:4
+    }
+}
+@media (min-width:1600px){
+    .card-columns{
+        column-count:5
+    }
+}

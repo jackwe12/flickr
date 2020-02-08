@@ -4,13 +4,12 @@ import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import './ImageSearch.css';
-import { useState, useEffect} from 'react';
+import { useState} from 'react';
 import * as yup from 'yup';
-import { searchPhotos,getPhotos } from '../getPhotos';
+import { searchPhotos } from '../getPhotos';
 import InfiniteScroll from 'react-infinite-scroller';
-import {Figure,CardColumns} from 'react-bootstrap';
+import {CardColumns, Spinner} from 'react-bootstrap';
 import ImageCard from '../Card/Card'
-import spinner from '../Spinner/Spinner'
 
 const schema = yup.object({
     query: yup.string().required('Keyword is required'),
@@ -37,13 +36,20 @@ function ImageSearch(){
         page = page + 1 ; 
         const response = await searchPhotos(keyword);
         setImages(images.concat(response.data.items));
-        console.log(images)
-        spinner();
-        console.log('active')
-
-
+        getLoader();
+        console.log()
 
       }
+    const getLoader = () => {
+        console.log('getLoader')
+        return(
+            <React.Fragment>
+                <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+                </Spinner>          
+            </React.Fragment>
+        )
+    }  
 
     return (
         <div className="ImageSearch">
@@ -63,7 +69,7 @@ function ImageSearch(){
           isInvalid,
           errors,
         }) => (
-            <Form noValidate onSubmit={handleSubmit}>
+            <Form noValidate onSubmit={handleSubmit} className="search-bar">
               <Form.Row>
                 <Form.Group as={Col} md="4" controlId="firstName">
                   <Form.Label style={{textAlign:"center"}}>
@@ -88,9 +94,7 @@ function ImageSearch(){
       </Formik>
       <InfiniteScroll
         pageStart={page}
-        loadMore={
-            getMorePhotos}
-            
+        loadMore={getMorePhotos}
         hasMore={true}
         threshold={100}
       >
