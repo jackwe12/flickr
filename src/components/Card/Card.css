@@ -16,6 +16,13 @@
     transform: translate3D(3px,3px,0);
   }
 
+
+  @media (min-width:300px){
+    .card-columns {
+      margin: 3rem      
+    }
+
+}
   @media (max-width:800px){
     .modal-dialog{
       max-width: 80vw;

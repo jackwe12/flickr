@@ -25,6 +25,9 @@
     .card-columns{
         column-count:1
     }
+    .search-bar{
+        margin:3rem;
+    }
 }
 @media (min-width:800px){
     .card-columns{
