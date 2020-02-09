@@ -21,6 +21,7 @@ function ImageSearch(){
     const [images, setImages] = useState([]);
     const [keyword, setKeyword] = useState('');
     const [emptyTimes, setEmptyTimes] = useState(0);
+    const [loading, setLoading] = useState(false);
     const handleSubmit = async (evt) =>{
         setEmptyTimes(0);
         const isValid = await schema.validate(evt);
@@ -31,8 +32,10 @@ function ImageSearch(){
         setImages(images.concat(response.data.items));
     }
     const getMorePhotos = async () => {
+        setLoading(true)
         page = page + 1 ; 
         const response = await searchPhotos(keyword)
+        setLoading(false)
 
         const filteredData = response.data.items.filter(i=>{ 
                 if( images.filter(j=>j.link===i.link).length===0){
@@ -46,18 +49,8 @@ function ImageSearch(){
         // console.log(filteredData);
         // setImages(images.concat(response.data.items));
         setImages(images.concat(filteredData));
-        getLoader();
-
       }
-    const getLoader = () => {
-        return(
-            <React.Fragment>
-                <Spinner animation="border" role="status">
-                <span className="sr-only">Loading...</span>
-                </Spinner>          
-            </React.Fragment>
-        )
-    }  
+
 
     return (
         <div className="ImageSearch">
@@ -103,7 +96,7 @@ function ImageSearch(){
       <InfiniteScroll
         pageStart={page}
         loadMore={getMorePhotos}
-        hasMore={emptyTimes<3}
+        hasMore={emptyTimes<1}
         threshold={100}
       >
 
@@ -119,11 +112,15 @@ function ImageSearch(){
 
 
       </InfiniteScroll>
+        {loading===true?
+                        <Spinner animation="border" role="status" className="loader">
+                            <span className="sr-only">Loading...</span>
+                        </Spinner>
+                        :""}
         <div className="error-message">
-            {(emptyTimes===3)?"No more images":""}
+            {(emptyTimes===1)?"No more images":""}
         </div>
-
-
+            {/* {loading===true?<Spinner/>:""} */}
 
         </div>
     );

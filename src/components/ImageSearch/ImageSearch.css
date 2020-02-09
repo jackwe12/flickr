@@ -16,7 +16,9 @@
     color:grey;
     font-size: 2rem;
 }
-
+.loader{
+    margin-left: 50%;
+}
 
 
 @media (min-width:300px){
