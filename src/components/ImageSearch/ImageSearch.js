@@ -19,15 +19,16 @@ function ImageSearch() {
     const [keyword, setKeyword] = useState('');
     const [emptyTimes, setEmptyTimes] = useState(0);
     const [loading, setLoading] = useState(false);
+
     const handleSubmit = async (evt) => {
-        setImages([]);
-        setEmptyTimes(0);
         const isValid = await schema.validate(evt);
         if (!isValid) { return }
+        setImages([]);
         setKeyword(evt.query);
-        const response = await searchPhotos(keyword);
-        setImages(images.concat(response.data.items));
+        setEmptyTimes(0);
     }
+
+
     const getMorePhotos = async () => {
         setLoading(true)
         page = page + 1;
@@ -43,18 +44,18 @@ function ImageSearch() {
         if (filteredData.length === 0) {
             setEmptyTimes(emptyTimes + 1)
         }
-   
+
         setImages(images.concat(filteredData));
     }
 
 
     return (
         <div className="ImageSearch">
-        <InputForm
-            handleSubmit={handleSubmit}
-            schema={schema}
+            <InputForm
+                handleSubmit={handleSubmit}
+                schema={schema}
 
-        />
+            />
             <InfiniteScroll
                 pageStart={page}
                 loadMore={getMorePhotos}
