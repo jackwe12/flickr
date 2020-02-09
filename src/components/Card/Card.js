@@ -1,7 +1,7 @@
-import Figure from 'react-bootstrap/Figure';
 import React from 'react';
 import { useState } from 'react';
-import { Card, ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
+import { Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import ModalBox from '../Modal/Modal';
 import './Card.css';
 
 
@@ -34,28 +34,13 @@ function ImageCard(props) {
           <Card.Link href={item.link} target="_blank">Image Link to Flickr </Card.Link>
         </Card.Body>
       </Card>
-
-      <Modal
+      <ModalBox
+        item={item}
+        index={index}
         show={show}
-        onHide={() => setShow(false)}
-        dialogClassName="modal-100w"
-        aria-labelledby="example-custom-modal-styling-title"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-custom-modal-styling-title">
-            {item.title}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Figure key={index}>
-            <Figure.Image
-              width={window.innerWidth}
-              src={item.media.m}
-              style={{ cursor: 'grab' }}
-            />
-          </Figure>
-        </Modal.Body>
-      </Modal>
+        setShow={setShow}
+      />
+
     </React.Fragment>
 
 

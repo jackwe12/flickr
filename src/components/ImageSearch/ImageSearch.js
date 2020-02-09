@@ -1,15 +1,12 @@
 import React from 'react';
-import { Formik } from 'formik';
-import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import './ImageSearch.css';
 import { useState } from 'react';
 import * as yup from 'yup';
 import { searchPhotos } from '../getPhotos';
 import InfiniteScroll from 'react-infinite-scroller';
 import { CardColumns, Spinner } from 'react-bootstrap';
-import ImageCard from '../Card/Card'
+import ImageCard from '../Card/Card';
+import InputForm from '../Form/Form';
 
 const schema = yup.object({
     query: yup.string().required('Keyword is required'),
@@ -46,53 +43,18 @@ function ImageSearch() {
         if (filteredData.length === 0) {
             setEmptyTimes(emptyTimes + 1)
         }
-        // console.log(filteredData);
-        // setImages(images.concat(response.data.items));
+   
         setImages(images.concat(filteredData));
     }
 
 
     return (
         <div className="ImageSearch">
-            <Formik
-                initialValues={{
-                    query: ''
-                }}
-                validationSchema={schema}
-                onSubmit={handleSubmit}
-            >
-                {({
-                    handleSubmit,
-                    handleChange,
-                    handleBlur,
-                    values,
-                    touched,
-                    isInvalid,
-                    errors,
-                }) => (
-                        <Form noValidate onSubmit={handleSubmit} className="search-bar">
-                            <Form.Row>
-                                <Form.Group as={Col} md="4" controlId="firstName">
-                                    <Form.Label style={{ textAlign: "center" }}>
-                                        <h4>Image Search</h4>
-                                    </Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        name="query"
-                                        placeholder="Keyword"
-                                        value={values.query || ''}
-                                        onChange={handleChange}
-                                        isInvalid={errors.query}
-                                    />
-                                    <Form.Control.Feedback type="invalid">
-                                        {errors.query}
-                                    </Form.Control.Feedback>
-                                </Form.Group>
-                            </Form.Row>
-                            <Button type="submit">Search</Button>
-                        </Form>
-                    )}
-            </Formik>
+        <InputForm
+            handleSubmit={handleSubmit}
+            schema={schema}
+
+        />
             <InfiniteScroll
                 pageStart={page}
                 loadMore={getMorePhotos}
