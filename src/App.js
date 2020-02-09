@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import {Router, Route} from "react-router-dom";
+import { Router, Route } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
-import {createBrowserHistory} from 'history'
+import { createBrowserHistory } from 'history'
 import imageSearch from './components/ImageSearch/ImageSearch';
 
 const history = createBrowserHistory();
@@ -23,7 +23,7 @@ function App() {
         <Route path="/" exact component={imageSearch} />
 
 
-  
+
       </Router>
     </div>
   );

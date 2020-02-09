@@ -1,25 +1,25 @@
 import Figure from 'react-bootstrap/Figure';
 import React from 'react';
-import { useState} from 'react';
-import {Card, ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
+import { useState } from 'react';
+import { Card, ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
 import './Card.css';
 
 
-function ImageCard(props){
-    const {index,item} = props
-    const [show, setShow] = useState(false);
+function ImageCard(props) {
+  const { index, item } = props
+  const [show, setShow] = useState(false);
 
-    return(
+  return (
 
-      <React.Fragment>
-      <Card 
-      style={{ width: '100%', margin:'5px' }}
+    <React.Fragment>
+      <Card
+        style={{ width: '100%', margin: '5px' }}
       >
-        <Card.Img 
-        variant="top" 
-        src={item.media.m}
-        onClick={()=>{setShow(true)}}
-         />
+        <Card.Img
+          variant="top"
+          src={item.media.m}
+          onClick={() => { setShow(true) }}
+        />
         <Card.Body>
           <Card.Title>Title: {item.title}</Card.Title>
           <Card.Text>
@@ -47,24 +47,24 @@ function ImageCard(props){
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-         <Figure key={index}>
-          <Figure.Image
-            width={window.innerWidth}
-            src={item.media.m}
-            style={{cursor:'grab'}}
-          />
-         </Figure>
+          <Figure key={index}>
+            <Figure.Image
+              width={window.innerWidth}
+              src={item.media.m}
+              style={{ cursor: 'grab' }}
+            />
+          </Figure>
         </Modal.Body>
       </Modal>
-      </React.Fragment>
-
-      
+    </React.Fragment>
 
 
 
 
 
-    )
+
+
+  )
 }
 
 export default ImageCard;
