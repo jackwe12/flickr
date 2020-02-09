@@ -16,8 +16,17 @@
     transform: translate3D(3px,3px,0);
   }
 
-  @media (min-width:300px){
+  @media (max-width:800px){
     .modal-dialog{
-      max-width: 90vw;
+      max-width: 80vw;
   }  
+
 }
+
+@media (min-width:1300px){
+  .modal-dialog{
+    max-width: 30vw;
+}  
+
+}
+
