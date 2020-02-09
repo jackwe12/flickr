@@ -13,7 +13,7 @@ function ImageCard(props){
 
       <React.Fragment>
       <Card 
-      style={{ width: '5rem%', margin:'5px' }}
+      style={{ width: '100%', margin:'5px' }}
       >
         <Card.Img 
         variant="top" 
