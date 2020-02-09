@@ -23,12 +23,12 @@ function ImageSearch(){
     const [emptyTimes, setEmptyTimes] = useState(0);
     const [loading, setLoading] = useState(false);
     const handleSubmit = async (evt) =>{
+        setImages([]);
         setEmptyTimes(0);
         const isValid = await schema.validate(evt);
         if (!isValid) {return}
         setKeyword(evt.query);
         const response = await searchPhotos(keyword);
-        setImages([]);
         setImages(images.concat(response.data.items));
     }
     const getMorePhotos = async () => {
@@ -118,9 +118,8 @@ function ImageSearch(){
                         </Spinner>
                         :""}
         <div className="error-message">
-            {(emptyTimes===1)?"No more images":""}
+            {(emptyTimes===1)&&(loading===false)?"No more images":""}
         </div>
-            {/* {loading===true?<Spinner/>:""} */}
 
         </div>
     );
