@@ -11,7 +11,11 @@
 .form-group{
     margin-top: 1.5rem;
 }
-
+.error-message{
+    text-align: center;
+    color:grey;
+    font-size: 2rem;
+}
 
 
 

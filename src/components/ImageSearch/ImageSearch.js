@@ -20,13 +20,11 @@ function ImageSearch(){
     let page =1;
     const [images, setImages] = useState([]);
     const [keyword, setKeyword] = useState('');
-
+    const [emptyTimes, setEmptyTimes] = useState(0);
     const handleSubmit = async (evt) =>{
+        setEmptyTimes(0);
         const isValid = await schema.validate(evt);
         if (!isValid) {return}
-        // const data ={
-        //     q:encodeURIComponent(evt.query),
-        // }
         setKeyword(evt.query);
         const response = await searchPhotos(keyword);
         setImages([]);
@@ -34,14 +32,24 @@ function ImageSearch(){
     }
     const getMorePhotos = async () => {
         page = page + 1 ; 
-        const response = await searchPhotos(keyword);
-        setImages(images.concat(response.data.items));
+        const response = await searchPhotos(keyword)
+
+        const filteredData = response.data.items.filter(i=>{ 
+                if( images.filter(j=>j.link===i.link).length===0){
+                    return true
+                }else {return false}
+                   
+                });
+        if (filteredData.length===0){
+            setEmptyTimes(emptyTimes+1)
+        }  
+        // console.log(filteredData);
+        // setImages(images.concat(response.data.items));
+        setImages(images.concat(filteredData));
         getLoader();
-        console.log()
 
       }
     const getLoader = () => {
-        console.log('getLoader')
         return(
             <React.Fragment>
                 <Spinner animation="border" role="status">
@@ -95,7 +103,7 @@ function ImageSearch(){
       <InfiniteScroll
         pageStart={page}
         loadMore={getMorePhotos}
-        hasMore={true}
+        hasMore={emptyTimes<3}
         threshold={100}
       >
 
@@ -111,7 +119,9 @@ function ImageSearch(){
 
 
       </InfiniteScroll>
-
+        <div className="error-message">
+            {(emptyTimes===3)?"No more images":""}
+        </div>
 
 
 
